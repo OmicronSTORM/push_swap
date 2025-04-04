@@ -6,15 +6,15 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 13:54:15 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/04/03 18:50:46 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/04/04 18:59:37 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include <stdlib.h>
 # include "../libft/libft.h"
+# include <stdlib.h>
 
 typedef struct s_data
 {
@@ -30,5 +30,6 @@ typedef struct	s_stack
 }		t_stack;
 
 t_stack	insert_number(int ac, char **av);
+t_data	*create_node(int num);
 
 #endif

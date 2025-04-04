@@ -6,7 +6,7 @@
 #    By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/02 16:32:41 by jowoundi          #+#    #+#              #
-#    Updated: 2025/04/04 16:16:28 by jowoundi         ###   ########.fr        #
+#    Updated: 2025/04/04 17:24:43 by jowoundi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	$(call progress_bar)
 
 
-FDF_LOGO = "\033[5;36m\
+LOGO = "\033[5;36m\
 ░█▀█░█░█░█▀▀░█░█░░░░░█▀▀░█░█░█▀█░█▀█ \n\
 ░█▀▀░█░█░▀▀█░█▀█░░░░░▀▀█░█▄█░█▀█░█▀▀ \n\
 ░▀░░░▀▀▀░▀▀▀░▀░▀░▀▀▀░▀▀▀░▀░▀░▀░▀░▀░░ \n\
@@ -56,9 +56,9 @@ all:  $(NAME)
 
 $(NAME): $(LIBFT) $(OBJS)
 	@printf "\n"
-	@printf $(FDF_LOGO)
+	@printf $(LOGO)
 	@echo "$(GREEN)Linking objects to create executable...$(NC)"
-	@$(CC) $(CFLAGS) $(OBJS) -L$(LIBFT_DIR) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o$(NAME)
 	@echo "$(GREEN)Executable $(NAME) created!$(NC)"
 
 $(LIBFT):
