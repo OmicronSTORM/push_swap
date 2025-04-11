@@ -1,67 +1,67 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   movement_a.c                                       :+:      :+:    :+:   */
+/*   movement_b.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/02 17:53:15 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/04/11 14:17:48 by jowoundi         ###   ########.fr       */
+/*   Created: 2025/04/11 13:58:49 by jowoundi          #+#    #+#             */
+/*   Updated: 2025/04/11 14:18:13 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void sa(t_stack *stacks)
+void sb(t_stack *stacks)
 {
 	t_node *first;
 	t_node *second;
 
-	first = stacks->a->next;
+	first = stacks->b->next;
 	second = first->next;
 	first->next = second->next;
 	second->next = first;
-	stacks->a->next = second;
+	stacks->b->next = second;
 }
 
-void ra(t_stack *stacks)
+void rb(t_stack *stacks)
 {
 	t_node *first;
 	t_node *last;
 
-	first = stacks->a->next;
-	stacks->a->next = first->next;
-	last = stacks->a->next;
+	first = stacks->b->next;
+	stacks->b->next = first->next;
+	last = stacks->b->next;
 	while (last->next)
 		last = last->next;
 	last->next = first;
 	first->next = NULL;
 }
 
-void rra(t_stack *stacks)
+void rrb(t_stack *stacks)
 {
 	t_node *prev;
 	t_node *last;
 
 	prev = NULL;
-	last = stacks->a->next;
+	last = stacks->b->next;
 	while (last->next)
 	{
 		prev = last;
 		last = last->next;
 	}
 	prev->next = NULL;
-	last->next = stacks->a->next;
-	stacks->a->next = last;
+	last->next = stacks->b->next;
+	stacks->b->next = last;
 }
 
-void	pa(t_stack *stacks)
+void	pb(t_stack *stacks)
 {
-	t_node *temp;
+	t_node	*temp;
 
-	temp = stacks->a->next;
-	stacks->a->next = stacks->a->next->next;
-
-	temp->next = stacks->b->next;
-	stacks->b->next = temp;
+	temp = stacks->b->next;
+	stacks->b->next = stacks->b->next->next;
+	
+	temp->next = stacks->a->next;
+	stacks->a->next = temp;
 }

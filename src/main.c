@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 16:22:29 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/04/10 17:01:29 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/04/11 14:18:13 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,36 +41,48 @@ int	main(int ac, char **av)
 		print_stack(stack->b);
 
 		printf("push a\n");
-		push_a(stack);
+		pa(stack);
 		print_stack(stack->a);
 		print_stack(stack->b);
 
 		printf("push a\n");
-		push_a(stack);
+		pa(stack);
+		print_stack(stack->a);
+		print_stack(stack->b);
+		
+		printf("swap\n");
+		sa(stack);
+		print_stack(stack->a);
+		
+		printf("swap\n");
+		sb(stack);
+		print_stack(stack->b);
+		
+		printf("rotate\n");
+		ra(stack);
+		print_stack(stack->a);
+		
+		printf("rotate\n");
+		rb(stack);
+		print_stack(stack->b);
+		
+		printf("reverse rotate\n");
+		rra(stack);
+		print_stack(stack->a);
+		
+		printf("reverse rotate\n");
+		rrb(stack);
+		print_stack(stack->b);
+		
+		printf("push b\n");
+		pb(stack);
 		print_stack(stack->a);
 		print_stack(stack->b);
 		
 		printf("push b\n");
-		push_b(stack);
+		pb(stack);
 		print_stack(stack->a);
 		print_stack(stack->b);
-
-		printf("push b\n");
-		push_b(stack);
-		print_stack(stack->a);
-		print_stack(stack->b);
-
-		printf("swap\n");
-		swap(stack);
-		print_stack(stack->a);
-
-		printf("rotate\n");
-		rotate(stack);
-		print_stack(stack->a);
-
-		printf("reverse rotate\n");
-		reverse_rotate(stack);
-		print_stack(stack->a);
 	}
 	return (0);
 }
