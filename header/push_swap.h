@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 13:54:15 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/04/11 14:18:35 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/04/14 16:14:42 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,10 @@ typedef struct	s_stack
 	
 }		t_stack;
 
+void	print_stack(t_node *stack);
 t_stack	*insert_number(int ac, char **av);
 void	insert_node(t_node **stack, int num);
+void	sort_number(t_stack *stack);
 void	sa(t_stack *stack);
 void	ra(t_stack *stacks);
 void	rra(t_stack *stacks);
