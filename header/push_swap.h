@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 13:54:15 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/04/14 16:14:42 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/04/15 16:50:56 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 typedef struct s_node
 {
 	int				num;
+	int				target;
+	int				max;
 	struct s_node	*next;
 }		t_node;
 

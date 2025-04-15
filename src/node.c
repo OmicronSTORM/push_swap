@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 17:08:53 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/04/09 15:47:49 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/04/15 18:03:56 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_node	*create_node(int num)
 void	insert_node(t_node **stack, int num)
 {
 	t_node	*new_node;
-	
+
 	new_node = create_node(num);
 	if (!stack || !*stack)
 	{
