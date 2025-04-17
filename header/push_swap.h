@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 13:54:15 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/04/15 16:50:56 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/04/17 12:30:45 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@
 typedef struct s_node
 {
 	int				num;
-	int				target;
-	int				max;
 	struct s_node	*next;
 }		t_node;
 
@@ -33,7 +31,7 @@ typedef struct	s_stack
 
 void	print_stack(t_node *stack);
 t_stack	*insert_number(int ac, char **av);
-void	insert_node(t_node **stack, int num);
+void	insert_node(t_node *stack, int num);
 void	sort_number(t_stack *stack);
 void	sa(t_stack *stack);
 void	ra(t_stack *stacks);

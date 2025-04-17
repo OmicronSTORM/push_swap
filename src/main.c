@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 16:22:29 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/04/15 18:15:00 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/04/17 11:35:38 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void print_stack(t_node *stack)
 {
 	t_node *node;
 
-	node = stack->next;
+	node = stack;
 	while (node != NULL)
 	{
 		ft_printf("[%d] ", node->num);
@@ -32,9 +32,6 @@ int	main(int ac, char **av)
 	if (ac)
 	{
 		stack = insert_number(ac, av);
-		stack->b = (t_node *)malloc(sizeof(t_node));
-		stack->b->next = NULL;
-		stack->b->num = 0;
 		sort_number(stack);
 	}
 	return (0);

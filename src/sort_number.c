@@ -6,13 +6,30 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 16:13:03 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/04/15 18:25:07 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/04/17 13:54:41 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	list_lenght(t_node *stack)
+int	find_index(t_node *stack, int value)
+{
+	int index;
+	t_node *runner;
+	
+	index = 0;
+	runner = stack;
+	while (runner != NULL)
+	{
+		if (runner->num == value)
+			return (index);
+		index++;
+		runner = runner->next;
+	}
+	return (-1);
+}
+
+int	list_length(t_node *stack)
 {
 	int	i;
 	t_node	*node;
@@ -27,80 +44,92 @@ int	list_lenght(t_node *stack)
 	return (i);
 }
 
-void	check_target(int target_a, t_node *sb)
+int		find_match(t_stack *stack, int value)
 {
-	if (sb->num > target_a)
-		return ;
+	int		best_match;
+	t_node	*runner;
+
+	(void)value;
+	best_match = 0;
+	runner = stack->b;
+	while (runner != NULL)
+	{
+		// find the good number to insert, should be next smaller or max if nothing found! :D :D:D :D
+		runner = runner->next;
+	}
+	return (best_match);
+}
+
+int		calculate_cost(t_node *stack, int value)
+{
+	int length;
+	int index;
+	int cost;
+
+	cost = 0;
+	index = find_index(stack, value);
+	if (index == -1)
+		return (-1);
+	length = list_length(stack);
+	if (index > length / 2)
+	{
+		while (index != length)
+			cost++;
+	}
 	else
-		target_a = sb->num;
-}
-
-void	define_target(t_node *cur_node,t_stack *stack)
-{
-	t_stack	*node;
-
-	node = stack;
-	cur_node->target = 0;
-	printf("avant la boucle de define_target\n");
-	while(node->b->next)
 	{
-		printf("on entre dans la boucle\n");
-		if (stack->b->num < cur_node->num)
-		{
-			printf("avant check_target\n");
-			check_target(cur_node->target, stack->b);
-			printf("apres check_target\n");
-			node->b = node->b->next;
-		}
-		node->b = node->b->next;
+		while (index != 0)
+		cost++;
 	}
-	printf("apres la boucle de define_target\n");
+	return (cost);
 }
 
-void	target_number(t_stack *stack)
+void	push_stack(t_stack *stack)
 {
-	t_stack	*node;
-
-	node = stack;
-	printf("avant la boucle de target_number\n");
-	while (node->a->next)
-	{
-		printf("on est dans la boucle de target_number\n");
-		printf("avant define_target\n");
-		define_target(stack->a, stack);
-		printf("apres define_target\n");
-		node->a = node->a->next;
-	}
-	printf("on est sorti de la boucle de target_number\n");
-}
-
-void	check_stack(t_stack *stack)
-{
-	printf("avant target_number\n");
-	target_number(stack);
-	printf("apres target number\n");
+	
 }
 
 void	sort_number(t_stack *stack)
 {
+	pb(stack);
+	pb(stack);
+	
+	t_node *runner = stack->a->next;
+
+	// int cost = calculate_cost(stack->a, runner->num);
+	// ft_printf("COST: %d\n", cost);
+		
+	while (list_length(stack->a) > 3)
+	{
+		// push to b using insertion sort
+		push_stack(stack);
+	}
+	// sort stack a 3
+	// move max from stack b to the top
+	
+	while (list_length(stack->b) > 0)
+	{
+		// push to a at the right spot
+	}
+	// move max from stack a to the top
+}
+
+/*
+void	sort_number(t_stack *stack)
+{
 	int	i;
-	int	lenght;
+	int	length;
 
 	i = -1;
-	lenght = list_lenght(stack->a);
-	printf("LENGHT: %d\n", lenght);
-	printf("avant boucle sort number\n");
-	while (++i <= (lenght - 3))
+	length = list_length(stack->a);
+	while (++i <= (length - 3))
 	{
-		printf("on est dans la boucle de sort number\n");
 		if (i < 2)
-			pb(stack);
-		else
 		{
-			printf("Avant check_stack\n");
-			check_stack(stack);
-			printf("apres check_stack\n");
+			pb(stack);
+			continue;
 		}
-		printf("fin de la boucle de sort number\n");
+		check_stack(stack);
 	}
 }
+*/

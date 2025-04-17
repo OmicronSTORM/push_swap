@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 13:58:49 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/04/14 16:22:57 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/04/17 12:54:20 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,10 @@ void	pb(t_stack *stacks)
 {
 	t_node *temp;
 
-	temp = stacks->a->next;
-	stacks->a->next = stacks->a->next->next;
-
-	temp->next = stacks->b->next;
-	stacks->b->next = temp;
+	if (!stacks->a)
+		return ;
+	temp = stacks->a;
+	stacks->a = stacks->a->next;
+	temp->next = stacks->b;
+	stacks->b = temp;
 }

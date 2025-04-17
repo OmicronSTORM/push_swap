@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 17:53:15 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/04/14 16:23:07 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/04/17 12:59:11 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,12 @@ void rra(t_stack *stacks)
 
 void	pa(t_stack *stacks)
 {
-	t_node	*temp;
+	t_node *temp;
 
-	temp = stacks->b->next;
-	stacks->b->next = stacks->b->next->next;
-	
-	temp->next = stacks->a->next;
-	stacks->a->next = temp;
+	if (!stacks->b)
+		return ;
+	temp = stacks->b;
+	stacks->b = stacks->b->next;
+	temp->next = stacks->a;
+	stacks->a = temp;
 }

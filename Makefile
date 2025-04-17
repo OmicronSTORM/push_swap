@@ -6,13 +6,13 @@
 #    By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/02 16:32:41 by jowoundi          #+#    #+#              #
-#    Updated: 2025/04/14 16:14:06 by jowoundi         ###   ########.fr        #
+#    Updated: 2025/04/16 14:51:04 by jowoundi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g3#-fsanitize=address -g3
+CFLAGS = -Wall -Wextra -Werror -g3 #-fsanitize=address -g3
 GREEN   = "\\033[32m"
 YELLOW	= "\\033[33m"
 NC      = "\\033[0m"
