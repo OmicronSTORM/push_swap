@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 16:13:03 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/04/17 16:00:30 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/04/17 16:06:33 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ int	list_length(t_node *stack)
 	return (i);
 }
 
-int	max_value(t_node *stack)
-{
+// int	max_value(t_node *stack)
+// {
 	
-}
+// }
 
 int	find_match(t_node *stack, int value)
 {
@@ -67,8 +67,8 @@ int	find_match(t_node *stack, int value)
 		}
 		runner = runner->next;
 	}
-	if (!check)
-		best_match = max_value(stack);
+	// if (!check)
+	// 	best_match = max_value(stack);
 	return (best_match);
 }
 
