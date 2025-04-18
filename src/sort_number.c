@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 16:13:03 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/04/17 16:06:33 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/04/18 18:37:49 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,21 @@ int	list_length(t_node *stack)
 	return (i);
 }
 
-// int	max_value(t_node *stack)
-// {
-	
-// }
+int	max_value(t_node *stack)
+{
+	t_node	*runner;
+	int		max_value;
+
+	max_value = stack->num;
+	runner = stack->next;
+	while (runner != NULL)
+	{
+		if (max_value < runner->num)
+			max_value = runner->num;
+		runner = runner->next;
+	}
+	return (max_value);
+}
 
 int	find_match(t_node *stack, int value)
 {
@@ -67,8 +78,8 @@ int	find_match(t_node *stack, int value)
 		}
 		runner = runner->next;
 	}
-	// if (!check)
-	// 	best_match = max_value(stack);
+	if (!check)
+		best_match = max_value(stack);
 	return (best_match);
 }
 
@@ -98,16 +109,21 @@ int		calculate_cost(t_node *stack, int value)
 
 void	sort_number(t_stack *stack)
 {
+	int		cost;
+	int		test;
+	t_node	*runner;
+
 	pb(stack);
 	pb(stack);
 	
-	t_node *runner = stack->a->next;
+	runner = stack->a->next;
 	while (list_length(stack->a) > 3)
 	{
 		// push to b using insertion sort
-		int cost = calculate_cost(stack->a, runner->num);
-		ft_printf("COST: %d\n", cost);
+		test = find_match(stack->b, runner->num);
+		cost = calculate_cost(stack->a, runner->num);
 		pb(stack);
+		print_stack(stack->b);
 	}
 	// sort stack a 3
 	// move max from stack b to the top
