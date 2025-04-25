@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 16:13:03 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/04/18 18:37:49 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/04/25 16:00:05 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ int	find_match(t_node *stack, int value)
 
 	best_match = 0;
 	check = 0;
+	printf("findmatch %d\n", value);
 	runner = stack;
 	while (runner != NULL)
 	{
@@ -80,50 +81,35 @@ int	find_match(t_node *stack, int value)
 	}
 	if (!check)
 		best_match = max_value(stack);
+	printf("bestmatch %d\n", best_match);
 	return (best_match);
 }
 
-int		calculate_cost(t_node *stack, int value)
+int		calculate_cost(t_node *stack_a, t_node *stack_b)
 {
+	
 	int length;
 	int index;
 	int cost;
-
-	cost = 0;
-	index = find_index(stack, value);
-	if (index == -1)
-		return (-1);
-	length = list_length(stack);
-	if (index > length / 2)
-	{
-		while (index++ != length)
-			cost++;
-	}
-	else
-	{
-		while (index-- != 0)
-		cost++;
-	}
-	return (cost);
 }
 
 void	sort_number(t_stack *stack)
 {
-	int		cost;
+	int		cheapest;
 	int		test;
-	t_node	*runner;
 
 	pb(stack);
 	pb(stack);
-	
-	runner = stack->a->next;
-	while (list_length(stack->a) > 3)
+
+	while (list_length(stack->a) >= 3)
 	{
 		// push to b using insertion sort
-		test = find_match(stack->b, runner->num);
-		cost = calculate_cost(stack->a, runner->num);
-		pb(stack);
+		test = find_match(stack->b, stack->a->num);
+		cheapest = calculate_cost(stack->a, stack->b);
+		printf("COST: %d\n", cheapest);
+		print_stack(stack->a);
 		print_stack(stack->b);
+		pb(stack);
 	}
 	// sort stack a 3
 	// move max from stack b to the top
