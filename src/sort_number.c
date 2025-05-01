@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 16:13:03 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/04/28 18:55:44 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/05/01 17:25:37 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,31 @@ int	find_index(t_node *stack, int value)
 		runner = runner->next;
 	}
 	return (-1);
+}
+
+int	value_to_a(t_node *src, t_node *dest)
+{
+	t_node	*runner;
+	int		match;
+	int		check;
+
+	check = 0;
+	runner = dest;
+	while (runner)
+	{
+		if (runner->num > src->num)
+		{
+			if (!check || runner->num < match)
+			{
+				match = runner->num;
+				check = 1;
+			}
+		}
+		runner = runner->next;
+	}
+	if (!check)
+		match = min_value(dest);
+	return (match);
 }
 
 int	list_length(t_node *stack)
@@ -59,30 +84,53 @@ int	max_value(t_node *stack)
 	}
 	return (max_value);
 }
-int	road_to_top(t_node *stack, int index)
+int	road_to_top(t_node *stack, int i)
 {
 	int	length;
 	int move;
 
 	move = 0;
 	length = list_length(stack);
-	if (index > length / 2)
+	if (i > length / 2)
 	{
-		while (index < length)
+		while (i < length)
 		{
 			move++;
-			index++;
+			i++;
 		}
 	}
 	else
 	{
-		while (index > 0)
+		while (i > 0)
 		{
 			move++;
-			index++;
+			i++;
 		}
 	}
 	return (move);
+}
+
+void	move_top(t_node *stack, int i)
+{
+	int	length;
+
+	length = list_length(stack);
+	if (i > length / 2)
+	{
+		while (i < length)
+		{
+			rr(&stack);
+			i++;
+		}
+	}
+	else
+	{
+		while (i > 0)
+		{
+			r(&stack);
+			i--;
+		}
+	}
 }
 
 int	find_match(t_node *stack, int value)
@@ -93,7 +141,6 @@ int	find_match(t_node *stack, int value)
 
 	best_match = 0;
 	check = 0;
-	printf("findmatch %d\n", value);
 	runner = stack;
 	while (runner != NULL)
 	{
@@ -118,6 +165,7 @@ int		calculate_cost(t_node *stack_a, t_node *stack_b)
 	int cost;
 	
 	runner = stack_a;
+	match_index = 0;
 	if (runner)
 	{
 		cheapest = runner->num;
@@ -140,20 +188,21 @@ int		calculate_cost(t_node *stack_a, t_node *stack_b)
 
 void	sort_number(t_stack *stack)
 {
-	int		cheapest;
-	int		test;
+	int	cheapest;
+	int	index;
 
-	pb(stack);
-	pb(stack);
-
+	p(&stack->a, &stack->b);
+	p(&stack->a, &stack->b);
 	while (list_length(stack->a) >= 3)
 	{
 		// push to b using insertion sort
-		test = find_match(stack->b, stack->a->num);
 		cheapest = calculate_cost(stack->a, stack->b);
+		index = find_index(stack->a, cheapest);
 		print_stack(stack->a);
 		print_stack(stack->b);
-		pb(stack);
+		move_top(stack->a, index);
+		move_top(stack->b, find_index(stack->b, find_match(stack->b, cheapest)));
+		p(&stack->a, &stack->b);
 		print_stack(stack->a);
 		print_stack(stack->b);
 	}

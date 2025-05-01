@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 14:12:04 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/04/11 14:18:35 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/04/30 19:02:52 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 void	ss(t_stack *stack)
 {
-	sa(stack);
-	sb(stack);
+	s(&stack->a);
+	s(&stack->b);
 }
 
-void	rr(t_stack *stack)
+void	rrb(t_stack *stack)
 {
-	ra(stack);
-	rb(stack);
+	r(&stack->a);
+	r(&stack->b);
 }
 
 void	rrr(t_stack *stack)
 {
-	rra(stack);
-	rrb(stack);
+	rr(&stack->a);
+	rr(&stack->b);
 }

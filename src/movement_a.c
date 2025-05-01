@@ -6,63 +6,63 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 17:53:15 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/04/17 12:59:11 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/05/01 17:22:25 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void sa(t_stack *stacks)
+void	s(t_node **stack)
 {
-	t_node *first;
-	t_node *second;
-
-	first = stacks->a->next;
+	t_node	*first;
+	t_node	*second;
+	
+	first = (*stack)->next;
 	second = first->next;
 	first->next = second->next;
 	second->next = first;
-	stacks->a->next = second;
+	(*stack)->next = second;
 }
 
-void ra(t_stack *stacks)
+void	r(t_node **stack)
 {
-	t_node *first;
-	t_node *last;
-
-	first = stacks->a->next;
-	stacks->a->next = first->next;
-	last = stacks->a->next;
+	t_node	*first;
+	t_node	*last;
+	
+	first = (*stack)->next;
+	(*stack)->next = first->next;
+	last = (*stack)->next;
 	while (last->next)
-		last = last->next;
+	last = last->next;
 	last->next = first;
 	first->next = NULL;
 }
 
-void rra(t_stack *stacks)
+void	rr(t_node **stack)
 {
-	t_node *prev;
-	t_node *last;
-
+	t_node	*prev;
+	t_node	*last;
+	
 	prev = NULL;
-	last = stacks->a->next;
+	last = (*stack)->next;
 	while (last->next)
 	{
 		prev = last;
 		last = last->next;
 	}
 	prev->next = NULL;
-	last->next = stacks->a->next;
-	stacks->a->next = last;
+	last->next = (*stack)->next;
+	(*stack)->next = last;
 }
 
-void	pa(t_stack *stacks)
+void	p(t_node **src, t_node **dest)
 {
 	t_node *temp;
-
-	if (!stacks->b)
-		return ;
-	temp = stacks->b;
-	stacks->b = stacks->b->next;
-	temp->next = stacks->a;
-	stacks->a = temp;
+	
+	if (!src)
+	return ;
+	temp = *src;
+	*src = (*src)->next;
+	temp->next = *dest;
+	*dest = temp;
 }
