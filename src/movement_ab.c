@@ -6,11 +6,11 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 14:12:04 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/04/30 19:02:52 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/05/02 15:32:44 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../header/push_swap.h"
 
 void	ss(t_stack *stack)
 {

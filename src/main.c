@@ -6,11 +6,11 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 16:22:29 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/04/17 11:35:38 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/05/02 15:35:30 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../header/push_swap.h"
 
 void print_stack(t_node *stack)
 {
@@ -24,6 +24,8 @@ void print_stack(t_node *stack)
 	}
 	ft_printf("\n");
 }
+
+
 
 int	main(int ac, char **av)
 {

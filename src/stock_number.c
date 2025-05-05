@@ -6,11 +6,11 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 18:52:06 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/04/17 11:37:25 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/05/02 15:32:44 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../header/push_swap.h"
 
 t_stack	*insert_number(int ac, char **av)
 {

@@ -6,22 +6,24 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 17:53:15 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/05/01 17:22:25 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/05/05 17:37:09 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../header/push_swap.h"
 
 void	s(t_node **stack)
 {
 	t_node	*first;
 	t_node	*second;
-	
-	first = (*stack)->next;
+
+	if (!stack || !*stack || !(*stack)->next)
+		return;
+	first = (*stack);
 	second = first->next;
 	first->next = second->next;
 	second->next = first;
-	(*stack)->next = second;
+	*stack = second;
 }
 
 void	r(t_node **stack)
@@ -29,30 +31,33 @@ void	r(t_node **stack)
 	t_node	*first;
 	t_node	*last;
 	
-	first = (*stack)->next;
+	first = *stack;
+	last = *stack;
 	(*stack)->next = first->next;
-	last = (*stack)->next;
 	while (last->next)
-	last = last->next;
+		last = last->next;
+	*stack = first->next;
 	last->next = first;
 	first->next = NULL;
 }
 
-void	rr(t_node **stack)
+void rr(t_node **stack)
 {
-	t_node	*prev;
-	t_node	*last;
+	t_node *prev;
+	t_node *last;
 	
 	prev = NULL;
-	last = (*stack)->next;
+	last = *stack;
+	if (!stack || !*stack || !(*stack)->next)
+		return;
 	while (last->next)
 	{
 		prev = last;
 		last = last->next;
 	}
 	prev->next = NULL;
-	last->next = (*stack)->next;
-	(*stack)->next = last;
+	last->next = *stack;
+	*stack = last;
 }
 
 void	p(t_node **src, t_node **dest)

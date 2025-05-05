@@ -6,11 +6,11 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 16:13:03 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/05/01 17:25:37 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/05/05 17:47:37 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../header/push_swap.h"
 
 int	find_index(t_node *stack, int value)
 {
@@ -27,6 +27,22 @@ int	find_index(t_node *stack, int value)
 		runner = runner->next;
 	}
 	return (-1);
+}
+
+int	min_value(t_node *stack)
+{
+	t_node	*runner;
+	int		min_value;
+
+	min_value = stack->num;
+	runner = stack->next;
+	while (runner)
+	{
+		if (min_value > runner->num)
+			min_value = runner->num;
+		runner = runner->next;
+	}
+	return (min_value);
 }
 
 int	value_to_a(t_node *src, t_node *dest)
@@ -104,7 +120,7 @@ int	road_to_top(t_node *stack, int i)
 		while (i > 0)
 		{
 			move++;
-			i++;
+			i--;
 		}
 	}
 	return (move);
@@ -170,12 +186,12 @@ int		calculate_cost(t_node *stack_a, t_node *stack_b)
 	{
 		cheapest = runner->num;
 		match_index = find_index(stack_b, find_match(stack_b, runner->num));
+		cheapest_cost = road_to_top(stack_a, find_index(stack_a, runner->num)) + road_to_top(stack_b, match_index);
 	}
-	cheapest_cost = road_to_top(stack_a, runner->num) + road_to_top(stack_b, match_index);
 	while (runner)
 	{
 		match_index = find_index(stack_b, find_match(stack_b, runner->num));
-		cost = road_to_top(stack_a, runner->num) + road_to_top(stack_b, match_index);
+		cost = road_to_top(stack_a, find_index(stack_a ,runner->num)) + road_to_top(stack_b, match_index);
 		if (cost < cheapest_cost)
 		{
 			cheapest_cost = cost;
@@ -186,16 +202,60 @@ int		calculate_cost(t_node *stack_a, t_node *stack_b)
 	return (cheapest);
 }
 
+void	sort_three(t_node **stack)
+{
+	int	val1;
+	int	val2;
+	int	val3;
+
+	val1 = (*stack)->num;
+	val2 = (*stack)->next->num;
+	val3 = (*stack)->next->next->num;
+	if (val1 < val2 && val2 < val3)
+	{
+		printf("1\n");
+		return ;
+	}
+	else if (val1 < val2 && val2 > val3 && val1 < val3)
+	{
+		s(stack);
+		r(stack);
+		printf("2\n");
+	}
+	else if (val1 > val2 && val2 < val3 && val1 < val3)
+	{
+		s(stack);
+		printf("3\n");
+	}
+	else if (val1 < val2 && val2 > val3 && val1 > val3)
+	{
+		rr(stack);
+		printf("4\n");
+	}
+	else if (val1 > val2 && val2 < val3 && val1 > val3)
+	{
+		r(stack);
+		printf("5\n");
+	}	
+	else if (val1 > val2 && val2 > val3)
+	{
+		s(stack);
+		rr(stack);
+		printf("6\n");
+	}
+}
+
 void	sort_number(t_stack *stack)
 {
 	int	cheapest;
 	int	index;
+	int	move_to_a;
+	int	move_to_a_index;
 
 	p(&stack->a, &stack->b);
 	p(&stack->a, &stack->b);
-	while (list_length(stack->a) >= 3)
+	while (list_length(stack->a) > 3)
 	{
-		// push to b using insertion sort
 		cheapest = calculate_cost(stack->a, stack->b);
 		index = find_index(stack->a, cheapest);
 		print_stack(stack->a);
@@ -206,12 +266,21 @@ void	sort_number(t_stack *stack)
 		print_stack(stack->a);
 		print_stack(stack->b);
 	}
-	// sort stack a 3
-	// move max from stack b to the top
-	
+	printf("HORS DE LA PREMIERE BOUCLE\n");
+	print_stack(stack->a);
+	sort_three(&stack->a);
+	print_stack(stack->a);
+	printf("SORT_THREE\n");
 	while (list_length(stack->b) > 0)
 	{
-		// push to a at the right spot
+		move_to_a = value_to_a(stack->b, stack->a);
+		move_to_a_index = find_index(stack->a, move_to_a);
+		print_stack(stack->a);
+		print_stack(stack->b);
+		move_top(stack->a, move_to_a_index);
+		 p(&stack->b, &stack->a);
+		print_stack(stack->a);
+		print_stack(stack->b);
 	}
-	// move max from stack a to the top
+	printf("HORS DE LA DEUXIEME BOUCLE");
 }
