@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 16:13:03 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/05/05 17:47:37 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/05/06 14:18:12 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,16 +126,16 @@ int	road_to_top(t_node *stack, int i)
 	return (move);
 }
 
-void	move_top(t_node *stack, int i)
+void	move_top(t_node **stack, int i)
 {
 	int	length;
 
-	length = list_length(stack);
+	length = list_length(*stack);
 	if (i > length / 2)
 	{
 		while (i < length)
 		{
-			rr(&stack);
+			rr(stack);
 			i++;
 		}
 	}
@@ -143,7 +143,7 @@ void	move_top(t_node *stack, int i)
 	{
 		while (i > 0)
 		{
-			r(&stack);
+			r(stack);
 			i--;
 		}
 	}
@@ -156,7 +156,6 @@ int	find_match(t_node *stack, int value)
 	t_node	*runner;
 
 	best_match = 0;
-	check = 0;
 	runner = stack;
 	while (runner != NULL)
 	{
@@ -181,7 +180,6 @@ int		calculate_cost(t_node *stack_a, t_node *stack_b)
 	int cost;
 	
 	runner = stack_a;
-	match_index = 0;
 	if (runner)
 	{
 		cheapest = runner->num;
@@ -212,37 +210,40 @@ void	sort_three(t_node **stack)
 	val2 = (*stack)->next->num;
 	val3 = (*stack)->next->next->num;
 	if (val1 < val2 && val2 < val3)
-	{
-		printf("1\n");
 		return ;
-	}
 	else if (val1 < val2 && val2 > val3 && val1 < val3)
 	{
 		s(stack);
 		r(stack);
-		printf("2\n");
 	}
 	else if (val1 > val2 && val2 < val3 && val1 < val3)
-	{
 		s(stack);
-		printf("3\n");
-	}
 	else if (val1 < val2 && val2 > val3 && val1 > val3)
-	{
 		rr(stack);
-		printf("4\n");
-	}
 	else if (val1 > val2 && val2 < val3 && val1 > val3)
-	{
 		r(stack);
-		printf("5\n");
-	}	
 	else if (val1 > val2 && val2 > val3)
 	{
 		s(stack);
 		rr(stack);
-		printf("6\n");
 	}
+}
+void	check_stack(t_node **stack)
+{
+	t_node	*runner;
+	int		i;
+	int		min_value;
+	
+	i = 0;
+	runner = *stack;
+	min_value = runner->num;
+	while (runner)
+	{
+		if (min_value > runner->num)
+			min_value = runner->num;
+		runner = runner->next;
+	}
+	move_top(stack, find_index(*stack, min_value));
 }
 
 void	sort_number(t_stack *stack)
@@ -258,29 +259,18 @@ void	sort_number(t_stack *stack)
 	{
 		cheapest = calculate_cost(stack->a, stack->b);
 		index = find_index(stack->a, cheapest);
-		print_stack(stack->a);
-		print_stack(stack->b);
-		move_top(stack->a, index);
-		move_top(stack->b, find_index(stack->b, find_match(stack->b, cheapest)));
+		move_top(&stack->a, index);
+		move_top(&stack->b, find_index(stack->b, find_match(stack->b, cheapest)));
 		p(&stack->a, &stack->b);
-		print_stack(stack->a);
-		print_stack(stack->b);
 	}
-	printf("HORS DE LA PREMIERE BOUCLE\n");
-	print_stack(stack->a);
 	sort_three(&stack->a);
-	print_stack(stack->a);
-	printf("SORT_THREE\n");
 	while (list_length(stack->b) > 0)
 	{
 		move_to_a = value_to_a(stack->b, stack->a);
 		move_to_a_index = find_index(stack->a, move_to_a);
-		print_stack(stack->a);
-		print_stack(stack->b);
-		move_top(stack->a, move_to_a_index);
+		move_top(&stack->a, move_to_a_index);
 		 p(&stack->b, &stack->a);
-		print_stack(stack->a);
-		print_stack(stack->b);
 	}
-	printf("HORS DE LA DEUXIEME BOUCLE");
+	check_stack(&stack->a);
+	print_stack(stack->a);
 }

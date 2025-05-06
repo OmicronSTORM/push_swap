@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 17:53:15 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/05/05 17:37:09 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/05/06 12:24:56 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	s(t_node **stack)
 		return;
 	first = (*stack);
 	second = first->next;
+	if (!second)
+		return;
 	first->next = second->next;
 	second->next = first;
 	*stack = second;
