@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 16:22:29 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/05/07 19:15:55 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/05/07 19:40:50 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,21 +80,38 @@ void	sort_two(t_stack *stack)
 		s(&stack->a);
 }
 
+void	sort_four(t_stack *stack)
+{
+	int	move_to_a;
+	int	move_to_a_index;
+
+	p(&stack->a, &stack->b);
+	sort_three(&stack->a);
+	move_to_a = value_to_a(stack->b, stack->a);
+	move_to_a_index = find_index(stack->a, move_to_a);
+	move_top(&stack->a, move_to_a_index);
+	p(&stack->b, &stack->a);
+	check_stack(&stack->a);
+}
+
 void	sort_till_five(int ac, char **av, t_stack *stack)
 {
 	if (ac == 2)
-		return ;
+	{
+		if (ft_strlen() > 0)
+			printf("y'a quelque chose");
+		else
+			return ;
+	}
 	else if (ac == 3)
 	{
 		stack = insert_number(ac, av);
 		sort_two(stack);
-		print_stack(stack->a);
 	}
 	else if (ac == 4)
 	{
 		stack = insert_number(ac, av);
 		sort_three(&stack->a);
-		print_stack(stack->a);
 	}
 	else if (ac == 5)
 	{

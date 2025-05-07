@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 16:13:03 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/05/06 18:44:33 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/05/07 19:32:42 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -228,6 +228,7 @@ void	sort_three(t_node **stack)
 		rr(stack);
 	}
 }
+
 void	check_stack(t_node **stack)
 {
 	t_node	*runner;
