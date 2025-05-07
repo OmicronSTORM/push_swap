@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 13:54:15 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/04/30 19:04:54 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/05/07 19:00:51 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	print_stack(t_node *stack);
 t_stack	*insert_number(int ac, char **av);
 void	insert_node(t_node **stack, int num);
 void	sort_number(t_stack *stack);
+void	sort_three(t_node **stack);
 void	s(t_node **stack);
 void	r(t_node **stack);
 void	rr(t_node **stack);
