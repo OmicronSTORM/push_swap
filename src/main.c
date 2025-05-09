@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 16:22:29 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/05/07 19:40:50 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/05/09 16:34:34 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,29 +94,55 @@ void	sort_four(t_stack *stack)
 	check_stack(&stack->a);
 }
 
-void	sort_till_five(int ac, char **av, t_stack *stack)
+void	sort_bracket(char **av, t_stack **stack)
+{
+	char	**tab;
+	int		i;
+
+	if (!av || !av[1])
+		return;
+	i = 1;
+	tab = ft_split(av[1], ' ');
+	while (tab[i])
+		i++;
+	if (i > 0)
+	{
+		check_args(i, tab);
+		if (i <= 5)
+			sort_till_five(i, tab, stack);
+		else
+		{
+			*stack = insert_number_bracket(i, tab);
+			sort_number(*stack);
+		}
+	}
+	else
+		return ;
+}
+
+void	sort_till_five(int ac, char **av, t_stack **stack)
 {
 	if (ac == 2)
 	{
-		if (ft_strlen() > 0)
-			printf("y'a quelque chose");
+		if (ft_strlen(av[1]) > 0)
+			sort_bracket(av, stack);
 		else
 			return ;
 	}
 	else if (ac == 3)
 	{
-		stack = insert_number(ac, av);
-		sort_two(stack);
+		*stack = insert_number(ac, av);
+		sort_two(*stack);
 	}
 	else if (ac == 4)
 	{
-		stack = insert_number(ac, av);
-		sort_three(&stack->a);
+		*stack = insert_number(ac, av);
+		sort_three(&(*stack)->a);
 	}
 	else if (ac == 5)
 	{
-		stack = insert_number(ac, av);
-		sort_four(stack);
+		*stack = insert_number(ac, av);
+		sort_four(*stack);
 	}
 }
 
@@ -129,7 +155,7 @@ int	main(int ac, char **av)
 		check_args(ac, av);
 		stack = NULL;
 		if (ac <= 5)
-			sort_till_five(ac, av, stack);
+			sort_till_five(ac, av, &stack);
 		else
 		{	
 			stack = insert_number(ac, av);
