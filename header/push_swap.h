@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 13:54:15 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/05/10 14:50:40 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/05/10 15:03:00 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,9 @@ void	sort_till_five(int ac, char **av, t_stack **stack);
 t_stack	*insert_number_bracket(int ac, char **av);
 void	check_args(int ac, char **av);
 void	check_args_bracket(int ac, char **av);
+void	sort_till_five(int ac, char **av, t_stack **stack);
+void	verif_one(int ac, char **av, t_stack **stack);
+void	sort_bracket(char **av, t_stack **stack);
 void	s(t_node **stack, char *current);
 void	r(t_node **stack, char *current);
 void	rr(t_node **stack, char *current);
