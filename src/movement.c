@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 17:53:15 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/05/10 15:28:06 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/05/10 15:32:35 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void	r(t_node **stack, char *current)
 	t_node	*first;
 	t_node	*last;
 
+	if (!stack || !*stack || !(*stack)->next)
+		return ;
 	first = *stack;
 	last = *stack;
 	(*stack)->next = first->next;
@@ -69,7 +71,7 @@ void	p(t_node **src, t_node **dest, char *current)
 {
 	t_node	*temp;
 
-	if (!src)
+	if (!src || !*src || !(*src)->next)
 		return ;
 	temp = *src;
 	*src = (*src)->next;

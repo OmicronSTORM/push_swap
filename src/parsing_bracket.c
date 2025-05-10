@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 14:49:25 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/05/10 15:28:35 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/05/10 15:35:24 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ void	repeat_bracket(int ac, char **av)
 
 	i = 0;
 	tab = malloc(sizeof(char *) * (ac - 1));
+	if (!tab)
+		return ;
 	while (ac > i)
 	{
 		check = ft_atoi(av[i]);
