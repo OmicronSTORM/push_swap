@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 16:13:03 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/05/07 19:32:42 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/05/10 14:02:37 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ int	road_to_top(t_node *stack, int i)
 	return (move);
 }
 
-void	move_top(t_node **stack, int i)
+void	move_top(t_node **stack, int i, char *current)
 {
 	int	length;
 
@@ -135,7 +135,7 @@ void	move_top(t_node **stack, int i)
 	{
 		while (i < length)
 		{
-			rr(stack);
+			rr(stack, current);
 			i++;
 		}
 	}
@@ -143,7 +143,7 @@ void	move_top(t_node **stack, int i)
 	{
 		while (i > 0)
 		{
-			r(stack);
+			r(stack, current);
 			i--;
 		}
 	}
@@ -213,19 +213,19 @@ void	sort_three(t_node **stack)
 		return ;
 	else if (val1 < val2 && val2 > val3 && val1 < val3)
 	{
-		s(stack);
-		r(stack);
+		s(stack, "a");
+		r(stack, "a");
 	}
 	else if (val1 > val2 && val2 < val3 && val1 < val3)
-		s(stack);
+		s(stack, "a");
 	else if (val1 < val2 && val2 > val3 && val1 > val3)
-		rr(stack);
+		rr(stack, "a");
 	else if (val1 > val2 && val2 < val3 && val1 > val3)
-		r(stack);
+		r(stack, "a");
 	else if (val1 > val2 && val2 > val3)
 	{
-		s(stack);
-		rr(stack);
+		s(stack, "a");
+		rr(stack, "a");
 	}
 }
 
@@ -244,7 +244,7 @@ void	check_stack(t_node **stack)
 			min_value = runner->num;
 		runner = runner->next;
 	}
-	move_top(stack, find_index(*stack, min_value));
+	move_top(stack, find_index(*stack, min_value), "a");
 }
 
 void	sort_number(t_stack *stack)
@@ -254,24 +254,24 @@ void	sort_number(t_stack *stack)
 	int	move_to_a;
 	int	move_to_a_index;
 
-	p(&stack->a, &stack->b);
-	p(&stack->a, &stack->b);
+	p(&stack->a, &stack->b, "b");
+	p(&stack->a, &stack->b, "b");
 	while (list_length(stack->a) > 3)
 	{
 		cheapest = calculate_cost(stack->a, stack->b);
 		index = find_index(stack->a, cheapest);
-		move_top(&stack->a, index);
-		move_top(&stack->b, find_index(stack->b, find_match(stack->b, cheapest)));
-		p(&stack->a, &stack->b);
+		move_top(&stack->a, index, "a");
+		move_top(&stack->b, find_index(stack->b, find_match(stack->b, cheapest)), "b");
+		p(&stack->a, &stack->b, "b");
 	}
 	sort_three(&stack->a);
 	while (list_length(stack->b) > 0)
 	{
 		move_to_a = value_to_a(stack->b, stack->a);
 		move_to_a_index = find_index(stack->a, move_to_a);
-		move_top(&stack->a, move_to_a_index);
-		 p(&stack->b, &stack->a);
+		move_top(&stack->a, move_to_a_index, "a");
+		 p(&stack->b, &stack->a, "a");
 	}
 	check_stack(&stack->a);
-	print_stack(stack->a);
+	// print_stack(stack->a);
 }

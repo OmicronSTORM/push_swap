@@ -6,7 +6,7 @@
 #    By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/02 16:32:41 by jowoundi          #+#    #+#              #
-#    Updated: 2025/05/07 13:14:55 by jowoundi         ###   ########.fr        #
+#    Updated: 2025/05/10 14:01:07 by jowoundi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ SRC_DIR = src/
 OBJ_DIR = obj/
 
 # Source files from the src directory
-SRCS = main.c node.c stock_number.c movement.c movement_ab.c sort_number.c
+SRCS = main.c node.c stock_number.c movement.c sort_number.c parsing.c
 
 OBJS = $(patsubst %.c, $(OBJ_DIR)%.o, $(SRCS))
 

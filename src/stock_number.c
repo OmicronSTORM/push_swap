@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 18:52:06 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/05/09 16:34:14 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/05/10 14:01:49 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,12 @@ t_stack	*insert_number(int ac, char **av)
 	while (i < ac)
 	{
 		num = ft_atoi(av[i]);
+		if (num > 2147483647 || num < -2147483648)
+		{
+			free(stack);
+			ft_printf("Error\n");
+			exit (1);
+		}
 		insert_node(&stack->a, num);
 		i++;
 	}
