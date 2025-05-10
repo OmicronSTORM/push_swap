@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 13:54:15 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/05/10 15:03:00 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/05/10 15:30:39 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ typedef struct s_node
 	struct s_node	*next;
 }		t_node;
 
-typedef struct	s_stack
+typedef struct s_stack
 {
 	t_node	*a;
 	t_node	*b;
-	
+
 }		t_stack;
 
 // void	print_stack(t_node *stack);
@@ -45,11 +45,17 @@ void	check_args_bracket(int ac, char **av);
 void	sort_till_five(int ac, char **av, t_stack **stack);
 void	verif_one(int ac, char **av, t_stack **stack);
 void	sort_bracket(char **av, t_stack **stack);
+int		road_to_top(t_node *stack, int i);
+int		list_length(t_node *stack);
+int		calculate_cost(t_node *stack_a, t_node *stack_b);
 void	s(t_node **stack, char *current);
 void	r(t_node **stack, char *current);
 void	rr(t_node **stack, char *current);
 void	rrr(t_stack *stack, char *current);
 void	rrb(t_stack *stack, char *current);
 void	p(t_node **src, t_node **dest, char *current);
+int		find_match(t_node *stack, int value);
+int		find_index(t_node *stack, int value);
+int		max_value(t_node *stack);
 
 #endif
