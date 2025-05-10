@@ -6,24 +6,24 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 16:22:29 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/05/10 13:58:16 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/05/10 14:54:19 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/push_swap.h"
 
-void print_stack(t_node *stack)
-{
-	t_node *node;
+// void print_stack(t_node *stack)
+// {
+// 	t_node *node;
 
-	node = stack;
-	while (node != NULL)
-	{
-		ft_printf("[%d] ", node->num);
-		node = node->next;
-	}
-	ft_printf("\n");
-}
+// 	node = stack;
+// 	while (node != NULL)
+// 	{
+// 		ft_printf("[%d] ", node->num);
+// 		node = node->next;
+// 	}
+// 	ft_printf("\n");
+// }
 
 void	sort_two(t_stack *stack)
 {
@@ -63,7 +63,7 @@ void	sort_bracket(char **av, t_stack **stack)
 		i++;
 	if (i > 0)
 	{
-		check_args(i, tab);
+		check_args_bracket(i, tab);
 		if (i <= 5)
 			sort_till_five(i, tab, stack);
 		else
@@ -76,15 +76,21 @@ void	sort_bracket(char **av, t_stack **stack)
 		return ;
 }
 
+void	verif_one(int ac, char **av, t_stack **stack)
+{
+	if (ft_strlen(av[1]) > 0)
+		sort_bracket(av, stack);
+	else
+	{
+		check_args_bracket(ac, av);
+		return ;
+	}
+}
+
 void	sort_till_five(int ac, char **av, t_stack **stack)
 {
 	if (ac == 2)
-	{
-		if (ft_strlen(av[1]) > 0)
-			sort_bracket(av, stack);
-		else
-			return ;
-	}
+		verif_one(ac, av, stack);
 	else if (ac == 3)
 	{
 		check_args(ac, av);
@@ -120,6 +126,7 @@ int	main(int ac, char **av)
 			stack = insert_number(ac, av);
 			sort_number(stack);
 		}
+		free(stack);
 	}
 	return (0);
 }

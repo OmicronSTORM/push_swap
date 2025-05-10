@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 18:52:06 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/05/10 14:01:49 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/05/10 14:36:27 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_stack	*insert_number_bracket(int ac, char **av)
 t_stack	*insert_number(int ac, char **av)
 {
 	int		i;
-	int		num;
+	long	num;
 	t_stack	*stack;
 
 	i = 1;
