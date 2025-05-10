@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 16:22:29 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/05/10 15:02:50 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/05/10 15:37:20 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void	sort_bracket(char **av, t_stack **stack)
 		return ;
 	i = 1;
 	tab = ft_split(av[1], ' ');
+	if (!tab)
+		return ;
 	while (tab[i])
 		i++;
 	if (i > 0)
