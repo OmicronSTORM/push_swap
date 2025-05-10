@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 13:54:15 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/05/10 15:30:39 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/05/10 18:47:58 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ typedef struct s_node
 	struct s_node	*next;
 }		t_node;
 
-typedef struct s_stack
+typedef struct	s_stack
 {
 	t_node	*a;
 	t_node	*b;
-
+	
 }		t_stack;
 
-// void	print_stack(t_node *stack);
+void	print_stack(t_node *stack);
 t_stack	*insert_number(int ac, char **av);
 void	insert_node(t_node **stack, int num);
 void	sort_number(t_stack *stack);
@@ -39,23 +39,18 @@ int		find_index(t_node *stack, int value);
 void	move_top(t_node **stack, int i, char *current);
 void	check_stack(t_node **stack);
 void	sort_till_five(int ac, char **av, t_stack **stack);
+void	sort_till_five_bracket(int ac, char **av, t_stack **stack);
 t_stack	*insert_number_bracket(int ac, char **av);
 void	check_args(int ac, char **av);
-void	check_args_bracket(int ac, char **av);
-void	sort_till_five(int ac, char **av, t_stack **stack);
+void	check_args_quote(int ac, char **av);
+void	sort_two(t_stack *stack);
+void	sort_four(t_stack *stack);
 void	verif_one(int ac, char **av, t_stack **stack);
-void	sort_bracket(char **av, t_stack **stack);
-int		road_to_top(t_node *stack, int i);
-int		list_length(t_node *stack);
-int		calculate_cost(t_node *stack_a, t_node *stack_b);
 void	s(t_node **stack, char *current);
 void	r(t_node **stack, char *current);
 void	rr(t_node **stack, char *current);
 void	rrr(t_stack *stack, char *current);
 void	rrb(t_stack *stack, char *current);
 void	p(t_node **src, t_node **dest, char *current);
-int		find_match(t_node *stack, int value);
-int		find_index(t_node *stack, int value);
-int		max_value(t_node *stack);
 
 #endif

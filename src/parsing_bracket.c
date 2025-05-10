@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 14:49:25 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/05/10 15:35:24 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/05/10 18:49:18 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,17 +58,14 @@ void	repeat_bracket(int ac, char **av)
 
 	i = 0;
 	tab = malloc(sizeof(char *) * (ac - 1));
-	if (!tab)
-		return ;
 	while (ac > i)
 	{
 		check = ft_atoi(av[i]);
 		if (check_tab_bracket(tab, check) == 1)
-			tab[i - 1] = av[i];
+			tab[i] = av[i];
 		else
 		{
 			ft_printf("Error\n");
-			free(tab);
 			exit(1);
 		}
 		i++;
@@ -95,7 +92,34 @@ void	letter_bracket(int ac, char **av)
 	}
 }
 
-void	check_args_bracket(int ac, char **av)
+void	sort_till_five_bracket(int ac, char **av, t_stack **stack)
+{
+	if (ac == 1)
+	{
+		check_args_quote(ac, av);
+		return ;
+	}
+	else if (ac == 2)
+	{
+		check_args_quote(ac, av);
+		*stack = insert_number_bracket(ac, av);
+		sort_two(*stack);
+	}
+	else if (ac == 3)
+	{
+		check_args_quote(ac, av);
+		*stack = insert_number_bracket(ac, av);
+		sort_three(&(*stack)->a);
+	}
+	else if (ac == 4)
+	{
+		check_args_quote(ac, av);
+		*stack = insert_number_bracket(ac, av);
+		sort_four(*stack);
+	}
+}
+
+void	check_args_quote(int ac, char **av)
 {
 	repeat_bracket(ac, av);
 	letter_bracket(ac, av);
