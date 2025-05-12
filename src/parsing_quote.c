@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 14:49:25 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/05/12 19:21:46 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/05/12 22:06:07 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	repeat_quote(int ac, char **av)
 	while (av[i])
 	{
 		check = ft_atoi(av[i]);
-		if (check_tab_quote(tab, check) == 0)
+		if (check_tab_quote(tab, check) == 1)
 			tab[i] = av[i];
 		else
 		{
@@ -117,27 +117,27 @@ int	letter_quote(int ac, char **av)
 void	sort_till_five_quote(int ac, char **av, t_stack **stack)
 {
 	if (ac == 1)
-	{
 		check_args_quote(ac, av);
-		return ;
-	}
 	else if (ac == 2)
 	{
 		check_args_quote(ac, av);
 		*stack = insert_number_quote(ac, av);
 		sort_two(*stack);
+		free_all(*stack, av);
 	}
 	else if (ac == 3)
 	{
 		check_args_quote(ac, av);
 		*stack = insert_number_quote(ac, av);
 		sort_three(&(*stack)->a);
+		free_all(*stack, av);
 	}
 	else if (ac == 4)
 	{
 		check_args_quote(ac, av);
 		*stack = insert_number_quote(ac, av);
 		sort_four(*stack);
+		free_all(*stack, av);
 	}
 }
 

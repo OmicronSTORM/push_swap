@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 16:22:29 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/05/12 20:03:55 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/05/12 22:09:08 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,9 @@ void	sort_quote(char **av, t_stack **stack)
 		{
 			*stack = insert_number_quote(i, tab);
 			sort_number(*stack);
+			free_all(*stack, tab);
 		}
 	}
-	free_double_p(tab);
 }
 
 void	verif_one(int ac, char **av, t_stack **stack)
@@ -112,18 +112,21 @@ void	sort_till_five(int ac, char **av, t_stack **stack)
 		check_args(ac, av);
 		*stack = insert_number(ac, av);
 		sort_two(*stack);
+		free_stack(*stack);
 	}
 	else if (ac == 4)
 	{
 		check_args(ac, av);
 		*stack = insert_number(ac, av);
 		sort_three(&(*stack)->a);
+		free_stack(*stack);
 	}
 	else if (ac == 5)
 	{
 		check_args(ac, av);
 		*stack = insert_number(ac, av);
 		sort_four(*stack);
+		free_stack(*stack);
 	}
 }
 
