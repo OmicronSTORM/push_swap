@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 12:58:05 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/05/10 17:23:19 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/05/12 17:31:08 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,10 @@ void	repeat(int ac, char **av)
 	int		i;
 
 	i = 1;
-	tab = malloc(sizeof(char *) * (ac - 1));
-	while (ac > i)
+	tab = calloc(sizeof(char *), (ac - 1));
+	if (!tab)
+		return ;
+	while (av[i])
 	{
 		check = ft_atoi(av[i]);
 		if (check_tab(tab, check) == 1)
@@ -70,6 +72,7 @@ void	repeat(int ac, char **av)
 		}
 		i++;
 	}
+	free(tab);
 }
 
 void	letter(int ac, char **av)
@@ -87,6 +90,8 @@ void	letter(int ac, char **av)
 		check = ft_atoi(av[i]);
 		str = ft_itoa(check);
 		len2 = ft_strlen(str);
+		free(str);
+		str = NULL;
 		char_check(av[i]);
 		i++;
 	}

@@ -6,13 +6,13 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 18:52:06 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/05/10 18:09:34 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/05/12 14:42:59 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/push_swap.h"
 
-t_stack	*insert_number_bracket(int ac, char **av)
+t_stack	*insert_number_quote(int ac, char **av)
 {
 	int		i;
 	int		num;

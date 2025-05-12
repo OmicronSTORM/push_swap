@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 16:13:03 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/05/10 14:39:51 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/05/12 17:11:10 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,6 +156,7 @@ int	find_match(t_node *stack, int value)
 	t_node	*runner;
 
 	best_match = 0;
+	check = 0;
 	runner = stack;
 	while (runner != NULL)
 	{
@@ -273,5 +274,4 @@ void	sort_number(t_stack *stack)
 		 p(&stack->b, &stack->a, "a");
 	}
 	check_stack(&stack->a);
-	// print_stack(stack->a);
 }
