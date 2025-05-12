@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 16:22:29 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/05/12 17:56:27 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/05/12 20:03:55 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,17 @@ void	sort_quote(char **av, t_stack **stack)
 void	verif_one(int ac, char **av, t_stack **stack)
 {
 	long	num;
-
-	if (ft_strlen(av[1]) > 1)
+	char	**temp;
+	
+	num = 0;
+	temp = ft_split(av[1], ' ');
+	while (temp[num])
+		num++;
+	free_double_p(temp);
+	if (num > 1)
+	{
 		sort_quote(av, stack);
+	}
 	else
 	{
 		check_args(ac, av);
@@ -122,6 +130,8 @@ void	sort_till_five(int ac, char **av, t_stack **stack)
 void	free_stack(t_stack *stack)
 {
 	void *temp;
+	if (!stack)
+		return ;
 	while (stack->a)
 	{
 		temp = stack->a->next;
@@ -139,14 +149,16 @@ int	main(int ac, char **av)
 	{
 		stack = NULL;
 		if (ac <= 5)
+		{
 			sort_till_five(ac, av, &stack);
+		}
 		else
 		{
 			check_args(ac, av);
 			stack = insert_number(ac, av);
 			sort_number(stack);
+			free_stack(stack);
 		}
-		free_stack(stack);
 	}
 	return (0);
 }
