@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 16:22:29 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/05/12 17:18:05 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/05/12 17:56:27 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,8 @@ void	verif_one(int ac, char **av, t_stack **stack)
 		num = ft_atoi(av[1]);
 		if (num > 2147483647 || num < -2147483648)
 		{
-			ft_printf("Error\n");
+			write(2, "Error\n", 6);
+			free_stack(*stack);
 			exit (1);
 		}
 		return ;

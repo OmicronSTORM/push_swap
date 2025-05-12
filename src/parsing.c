@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 12:58:05 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/05/12 17:31:08 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/05/12 17:44:30 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ void	char_check(char	*str)
 	i = 0;
 	if (str[i] != '-' && str[i] != '+' && ft_isdigit(str[i]) == 0)
 	{
-		ft_printf("Error\n");
+		write(2, "Error\n", 6);
+		free(str);
 		exit(1);
 	}
 	i++;
@@ -43,7 +44,8 @@ void	char_check(char	*str)
 	{
 		if (ft_isdigit(str[i]) == 0)
 		{
-			ft_printf("Error\n");
+			write(2, "Error\n", 6);
+			free(str);
 			exit(1);
 		}
 		i++;
@@ -67,7 +69,8 @@ void	repeat(int ac, char **av)
 			tab[i - 1] = av[i];
 		else
 		{
-			ft_printf("Error\n");
+			write(2, "Error\n", 6);
+			free(tab);
 			exit(1);
 		}
 		i++;

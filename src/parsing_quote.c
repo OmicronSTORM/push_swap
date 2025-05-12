@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 14:49:25 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/05/12 15:40:54 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/05/12 18:18:52 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,26 +28,21 @@ int	check_tab_quote(char **tab, int check)
 	return (1);
 }
 
-void	char_check_quote(char *str)
+int	char_check_quote(char *str)
 {
 	int	i;
 
 	i = 0;
 	if (str[i] != '-' && str[i] != '+' && ft_isdigit(str[i]) == 0)
-	{
-		ft_printf("Error\n");
-		exit(1);
-	}
+		return (1);
 	i++;
 	while (i < (int)ft_strlen(str))
 	{
 		if (ft_isdigit(str[i]) == 0)
-		{
-			ft_printf("Error\n");
-			exit(1);
-		}
+			return (1);
 		i++;
 	}
+	return (0);
 }
 
 void	free_double_p(char **tab)
@@ -77,11 +72,13 @@ void	repeat_quote(int ac, char **av)
 	while (av[i])
 	{
 		check = ft_atoi(av[i]);
-		if (check_tab_quote(tab, check) == 1)
+		if (check_tab_quote(tab, check) == 0)
 			tab[i] = av[i];
 		else
 		{
-			ft_printf("Error\n");
+			write(2, "Error\n", 6);
+			free(tab);
+			free_double_p(av);
 			exit(1);
 		}
 		i++;
@@ -90,7 +87,7 @@ void	repeat_quote(int ac, char **av)
 	tab = NULL;
 }
 
-void	letter_quote(int ac, char **av)
+int	letter_quote(int ac, char **av)
 {
 	int		i;
 	int		check;
@@ -105,11 +102,16 @@ void	letter_quote(int ac, char **av)
 		check = ft_atoi(av[i]);
 		str = ft_itoa(check);
 		len2 = ft_strlen(str);
-		char_check_quote(av[i]);
+		if (char_check_quote(av[i]) == 1)
+		{
+			free(str);
+			return (1);
+		}
 		free(str);
 		str = NULL;
 		i++;
 	}
+	return (0);
 }
 
 void	sort_till_five_quote(int ac, char **av, t_stack **stack)
