@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 12:58:05 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/05/13 15:22:44 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/05/13 15:45:26 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,5 +117,5 @@ void	check_args(int ac, char **av)
 	while (av[i] && av[i + 1] && ft_atoi(av[i]) < ft_atoi(av[i + 1]))
 		i++;
 	if (i == length)
-		exit (1);	
+		exit (1);
 }

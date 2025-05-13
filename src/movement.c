@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 17:53:15 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/05/10 13:52:44 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/05/13 15:46:41 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ void	s(t_node **stack, char *current)
 	t_node	*second;
 
 	if (!stack || !*stack || !(*stack)->next)
-		return;
+		return ;
 	first = (*stack);
 	second = first->next;
 	if (!second)
-		return;
+		return ;
 	first->next = second->next;
 	second->next = first;
 	*stack = second;
@@ -33,7 +33,7 @@ void	r(t_node **stack, char *current)
 {
 	t_node	*first;
 	t_node	*last;
-	
+
 	first = *stack;
 	last = *stack;
 	(*stack)->next = first->next;
@@ -45,15 +45,15 @@ void	r(t_node **stack, char *current)
 	ft_printf("r%s\n", current);
 }
 
-void rr(t_node **stack, char *current)
+void	rr(t_node **stack, char *current)
 {
-	t_node *prev;
-	t_node *last;
-	
+	t_node	*prev;
+	t_node	*last;
+
 	prev = NULL;
 	last = *stack;
 	if (!stack || !*stack || !(*stack)->next)
-		return;
+		return ;
 	while (last->next)
 	{
 		prev = last;
@@ -67,10 +67,10 @@ void rr(t_node **stack, char *current)
 
 void	p(t_node **src, t_node **dest, char *current)
 {
-	t_node *temp;
-	
+	t_node	*temp;
+
 	if (!src)
-	return ;
+		return ;
 	temp = *src;
 	*src = (*src)->next;
 	temp->next = *dest;

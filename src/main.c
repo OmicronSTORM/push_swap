@@ -6,49 +6,24 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 16:22:29 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/05/12 22:09:08 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/05/13 16:07:51 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../header/push_swap.h"
 
-void print_stack(t_node *stack)
-{
-	t_node *node;
+// void	print_stack(t_node *stack)
+// {
+// 	t_node	*node;
 
-	node = stack;
-	while (node != NULL)
-	{
-		ft_printf("[%d] ", node->num);
-		node = node->next;
-	}
-	ft_printf("\n");
-}
-
-void	sort_two(t_stack *stack)
-{
-	int	value1;
-	int	value2;
-
-	value1 = stack->a->num;
-	value2 = stack->a->next->num;
-	if (value1 > value2)
-		s(&stack->a, "a");
-}
-
-void	sort_four(t_stack *stack)
-{
-	int	move_to_a;
-	int	move_to_a_index;
-
-	p(&stack->a, &stack->b, "b");
-	sort_three(&stack->a);
-	move_to_a = value_to_a(stack->b, stack->a);
-	move_to_a_index = find_index(stack->a, move_to_a);
-	move_top(&stack->a, move_to_a_index, "a");
-	p(&stack->b, &stack->a, "a");
-	check_stack(&stack->a);
-}
+// 	node = stack;
+// 	while (node != NULL)
+// 	{
+// 		ft_printf("[%d] ", node->num);
+// 		node = node->next;
+// 	}
+// 	ft_printf("\n");
+// }
 
 void	sort_quote(char **av, t_stack **stack)
 {
@@ -56,7 +31,7 @@ void	sort_quote(char **av, t_stack **stack)
 	int		i;
 
 	if (!av || !av[1])
-		return;
+		return ;
 	i = 0;
 	tab = ft_split(av[1], ' ');
 	while (tab[i])
@@ -75,73 +50,31 @@ void	sort_quote(char **av, t_stack **stack)
 	}
 }
 
-void	verif_one(int ac, char **av, t_stack **stack)
+void	sort_till_five_quote(int ac, char **av, t_stack **stack)
 {
-	long	num;
-	char	**temp;
-	
-	num = 0;
-	temp = ft_split(av[1], ' ');
-	while (temp[num])
-		num++;
-	free_double_p(temp);
-	if (num > 1)
+	if (ac == 1)
+		check_args_quote(ac, av);
+	else if (ac == 2)
 	{
-		sort_quote(av, stack);
+		check_args_quote(ac, av);
+		*stack = insert_number_quote(ac, av);
+		sort_two(*stack);
+		free_all(*stack, av);
 	}
-	else
-	{
-		check_args(ac, av);
-		num = ft_atoi(av[1]);
-		if (num > 2147483647 || num < -2147483648)
-		{
-			write(2, "Error\n", 6);
-			free_stack(*stack);
-			exit (1);
-		}
-		return ;
-	}
-}
-
-void	sort_till_five(int ac, char **av, t_stack **stack)
-{
-	if (ac == 2)
-		verif_one(ac, av, stack);
 	else if (ac == 3)
 	{
-		check_args(ac, av);
-		*stack = insert_number(ac, av);
-		sort_two(*stack);
-		free_stack(*stack);
+		check_args_quote(ac, av);
+		*stack = insert_number_quote(ac, av);
+		sort_three(&(*stack)->a);
+		free_all(*stack, av);
 	}
 	else if (ac == 4)
 	{
-		check_args(ac, av);
-		*stack = insert_number(ac, av);
-		sort_three(&(*stack)->a);
-		free_stack(*stack);
-	}
-	else if (ac == 5)
-	{
-		check_args(ac, av);
-		*stack = insert_number(ac, av);
+		check_args_quote(ac, av);
+		*stack = insert_number_quote(ac, av);
 		sort_four(*stack);
-		free_stack(*stack);
+		free_all(*stack, av);
 	}
-}
-
-void	free_stack(t_stack *stack)
-{
-	void *temp;
-	if (!stack)
-		return ;
-	while (stack->a)
-	{
-		temp = stack->a->next;
-		free(stack->a);
-		stack->a = temp;
-	}
-	free(stack);
 }
 
 int	main(int ac, char **av)

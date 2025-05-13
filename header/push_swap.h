@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 13:54:15 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/05/12 22:05:06 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/05/13 16:26:31 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ typedef struct s_node
 	struct s_node	*next;
 }		t_node;
 
-typedef struct	s_stack
+typedef struct s_stack
 {
 	t_node	*a;
 	t_node	*b;
-	
+
 }		t_stack;
 
-void	print_stack(t_node *stack);
+// void	print_stack(t_node *stack);
 t_stack	*insert_number(int ac, char **av);
 void	insert_node(t_node **stack, int num);
 void	sort_number(t_stack *stack);
@@ -49,6 +49,11 @@ void	verif_one(int ac, char **av, t_stack **stack);
 void	free_double_p(char **tab);
 void	free_stack(t_stack *stack);
 void	free_all(t_stack *stack, char **tab);
+void	sort_quote(char **av, t_stack **stack);
+int		min_value(t_node *stack);
+int		find_match(t_node *stack, int value);
+int		road_to_top(t_node *stack, int i);
+int		list_length(t_node *stack);
 void	s(t_node **stack, char *current);
 void	r(t_node **stack, char *current);
 void	rr(t_node **stack, char *current);
