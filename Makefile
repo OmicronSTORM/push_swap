@@ -6,7 +6,7 @@
 #    By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/02 16:32:41 by jowoundi          #+#    #+#              #
-#    Updated: 2025/05/12 22:05:18 by jowoundi         ###   ########.fr        #
+#    Updated: 2025/05/13 14:30:41 by jowoundi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,8 @@ OBJS = $(patsubst %.c, $(OBJ_DIR)%.o, $(SRCS))
 
 TOTAL_FILES := $(words $(SRCS))
 CURRENT_FILE := 0
+
+ARG := $(shell seq 500 | shuf | paste - -s -d ' ')
 
 define progress_bar
 	@$(eval CURRENT_FILE=$(shell echo $$(($(CURRENT_FILE) + 1))))
@@ -75,4 +77,8 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+test: all
+	./$(NAME) $(ARG) | wc -l	
+	./$(NAME) $(ARG) | ./checker_linux $(ARG)
+
+.PHONY: all clean fclean re test

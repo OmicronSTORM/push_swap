@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 14:49:25 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/05/12 22:06:07 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/05/13 15:29:18 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	repeat_quote(int ac, char **av)
 	tab = NULL;
 }
 
-int	letter_quote(int ac, char **av)
+void	letter_quote(int ac, char **av)
 {
 	int		i;
 	int		check;
@@ -104,14 +104,15 @@ int	letter_quote(int ac, char **av)
 		len2 = ft_strlen(str);
 		if (char_check_quote(av[i]) == 1)
 		{
+			write(2, "Error\n", 6);
 			free(str);
-			return (1);
+			free_double_p(av);
+			exit(1);
 		}
 		free(str);
 		str = NULL;
 		i++;
 	}
-	return (0);
 }
 
 void	sort_till_five_quote(int ac, char **av, t_stack **stack)
@@ -143,6 +144,24 @@ void	sort_till_five_quote(int ac, char **av, t_stack **stack)
 
 void	check_args_quote(int ac, char **av)
 {
+	int	length;
+	int	i;
+
+	i = 0;
+	length = -1;
 	repeat_quote(ac, av);
 	letter_quote(ac, av);
+	while (av[i])
+	{
+		i++;
+		length++;
+	}
+	i = 0;
+	while (av[i] && av[i + 1] && ft_atoi(av[i]) < ft_atoi(av[i + 1]))
+		i++;
+	if (i == length)
+	{
+		free_double_p(av);
+		exit (1);
+	}
 }

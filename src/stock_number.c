@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 18:52:06 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/05/12 21:57:09 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/05/13 13:59:42 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_stack	*insert_number_quote(int ac, char **av)
 {
 	int		i;
-	int		num;
+	long	num;
 	t_stack	*stack;
 
 	i = 0;
@@ -30,7 +30,7 @@ t_stack	*insert_number_quote(int ac, char **av)
 		if (num > 2147483647 || num < -2147483648)
 		{
 			write(2, "Error\n", 6);
-			free_stack(stack);
+			free_all(stack, av);
 			exit (1);
 		}
 		insert_node(&stack->a, num);

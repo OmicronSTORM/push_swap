@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 12:58:05 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/05/12 21:42:40 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/05/13 15:22:44 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	repeat(int ac, char **av)
 	int		check;
 	int		i;
 
-	i = 0;
+	i = 1;
 	tab = ft_calloc(sizeof(char *), (ac));
 	if (!tab)
 		return ;
@@ -64,7 +64,7 @@ void	repeat(int ac, char **av)
 	{
 		check = ft_atoi(av[i]);
 		if (check_tab(tab, check) == 1)
-			tab[i] = av[i];
+			tab[i - 1] = av[i];
 		else
 		{
 			write(2, "Error\n", 6);
@@ -101,6 +101,21 @@ void	letter(int ac, char **av)
 
 void	check_args(int ac, char **av)
 {
+	int	length;
+	int	i;
+
+	i = 1;
+	length = 0;
 	repeat(ac, av);
 	letter(ac, av);
+	while (av[i])
+	{
+		i++;
+		length++;
+	}
+	i = 0;
+	while (av[i] && av[i + 1] && ft_atoi(av[i]) < ft_atoi(av[i + 1]))
+		i++;
+	if (i == length)
+		exit (1);	
 }
