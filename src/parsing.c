@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 12:58:05 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/05/14 12:24:39 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/05/16 11:34:41 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ void	letter(int ac, char **av)
 		len = ft_strlen(av[i]);
 		check = ft_atoi(av[i]);
 		str = ft_itoa(check);
+		if (!str)
+			exit (1);
 		len2 = ft_strlen(str);
 		free(str);
 		str = NULL;

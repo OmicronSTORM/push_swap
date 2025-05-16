@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 16:22:29 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/05/13 16:07:51 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/05/16 11:31:55 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void	sort_quote(char **av, t_stack **stack)
 		return ;
 	i = 0;
 	tab = ft_split(av[1], ' ');
+	if (!tab)
+		exit (1);
 	while (tab[i])
 		i++;
 	if (i > 0)

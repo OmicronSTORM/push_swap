@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 22:02:59 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/05/13 16:05:03 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/05/16 11:27:58 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,12 @@ void	free_double_p(char **tab)
 		i++;
 	}
 	free(tab);
+}
+
+void	parsing_error(char **tab, char *str)
+{
+	write(2, "Error\n", 6);
+	free(str);
+	free_double_p(tab);
+	exit(1);
 }

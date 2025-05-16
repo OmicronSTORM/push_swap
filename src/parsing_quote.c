@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 14:49:25 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/05/13 16:07:39 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/05/16 11:29:16 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,23 +81,22 @@ void	letter_quote(int ac, char **av)
 	int		len2;
 	char	*str;
 
-	i = 0;
-	while (ac > i)
+	i = -1;
+	while (ac > ++i)
 	{
 		len = ft_strlen(av[i]);
 		check = ft_atoi(av[i]);
 		str = ft_itoa(check);
+		if (!str)
+		{
+			free_double_p(av);
+			exit (1);
+		}
 		len2 = ft_strlen(str);
 		if (char_check_quote(av[i]) == 1)
-		{
-			write(2, "Error\n", 6);
-			free(str);
-			free_double_p(av);
-			exit(1);
-		}
+			parsing_error(av, str);
 		free(str);
 		str = NULL;
-		i++;
 	}
 }
 

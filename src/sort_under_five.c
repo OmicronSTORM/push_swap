@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 16:02:43 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/05/14 12:12:04 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/05/16 11:41:14 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ void	verif_one(int ac, char **av, t_stack **stack)
 
 	num = 0;
 	temp = ft_split(av[1], ' ');
+	if (!temp)
+		exit (1);
 	while (temp[num])
 		num++;
 	free_double_p(temp);
 	if (num > 1)
-	{
 		sort_quote(av, stack);
-	}
 	else
 	{
 		check_args(ac, av);
@@ -33,7 +33,6 @@ void	verif_one(int ac, char **av, t_stack **stack)
 		if (num > 2147483647 || num < -2147483648)
 		{
 			write(2, "Error\n", 6);
-			free_stack(*stack);
 			exit (1);
 		}
 		return ;

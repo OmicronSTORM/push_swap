@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 13:54:15 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/05/13 16:26:31 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/05/16 11:28:22 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	verif_one(int ac, char **av, t_stack **stack);
 void	free_double_p(char **tab);
 void	free_stack(t_stack *stack);
 void	free_all(t_stack *stack, char **tab);
+void	parsing_error(char **tab, char *str);
 void	sort_quote(char **av, t_stack **stack);
 int		min_value(t_node *stack);
 int		find_match(t_node *stack, int value);
